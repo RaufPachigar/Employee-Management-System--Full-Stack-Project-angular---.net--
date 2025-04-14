@@ -1,1 +1,156 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import Bootstrap using @use */
+@use "bootstrap/scss/bootstrap" as *;
+
+/* Global Responsive Styles */
+:root {
+  --navbar-height: 60px;
+  --sidebar-width: 250px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+body {
+  padding-top: var(--navbar-height); /* Add padding for fixed navbar */
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  :root {
+    --navbar-height: 70px; /* Taller navbar on mobile for the collapsed content */
+  }
+
+  body {
+    padding-top: var(--navbar-height);
+  }
+}
+
+/* Container Responsive Adjustments */
+.container {
+  padding: 1rem;
+  max-width: 100%;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* Utility Classes for Responsive Design */
+.responsive-text {
+  font-size: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
+}
+
+.responsive-padding {
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive Tables */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive Forms */
+.form-group {
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Responsive Buttons */
+.btn {
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Responsive Cards */
+.card {
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Responsive Grid System */
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+
+  @media (max-width: 768px) {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+}
+
+.col,
+[class*="col-"] {
+  padding-right: 15px;
+  padding-left: 15px;
+
+  @media (max-width: 768px) {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+/* Fixed navbar styles */
+.navbar.fixed-top {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: var(--navbar-height);
+  z-index: 1030;
+}
+
+/* Add spacing for page content when navbar is fixed */
+.page-content {
+  margin-top: 1.5rem;
+}

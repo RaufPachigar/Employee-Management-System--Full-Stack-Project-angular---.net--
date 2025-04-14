@@ -1,0 +1,95 @@
+<app-navbar />
+
+<div class="container mt-5 page-content">
+  <div class="row justify-content-center">
+    <div class="col-12 text-center mb-4">
+      <h1 class="display-5 fw-bold">
+        {{ isEditMode ? "Edit Employee" : "Add New Employee" }}
+      </h1>
+      <div class="border-bottom mt-2 mb-4 w-25 mx-auto"></div>
+    </div>
+
+    <div class="col-12 col-md-8 col-lg-6">
+      <form
+        (ngSubmit)="submitForm()"
+        class="shadow p-3 p-md-4 rounded bg-light"
+      >
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="employee.name"
+              name="name"
+              required
+              placeholder="Enter employee name"
+            />
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Role:</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="employee.role"
+              name="role"
+              required
+              placeholder="Enter employee role"
+            />
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Salary:</label>
+            <div class="input-group">
+              <span class="input-group-text">₹</span>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="employee.salary"
+                name="salary"
+                required
+                placeholder="Enter salary"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <label class="form-label">Department:</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="employee.department"
+              name="department"
+              placeholder="Enter department"
+            />
+          </div>
+
+          <div class="col-12 mb-3">
+            <label class="form-label">Date Of Joining:</label>
+            <input
+              type="date"
+              class="form-control"
+              [(ngModel)]="employee.dateOfJoining"
+              name="dateOfJoining"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="button" class="btn btn-secondary" (click)="goBack()">
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!isFormValid()"
+          >
+            {{ isEditMode ? "Update" : "Add" }} Employee
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

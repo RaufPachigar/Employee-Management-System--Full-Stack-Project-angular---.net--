@@ -1,0 +1,78 @@
+<app-navbar />
+
+<div class="container mt-5 page-content">
+  <div class="row mb-4">
+    <div class="col-12 text-center mb-4">
+      <h1 class="display-5 fw-bold">Employee Management</h1>
+      <div class="border-bottom mt-2 mb-4 w-25 mx-auto"></div>
+    </div>
+
+    <div class="col-12 d-flex justify-content-between align-items-center">
+      <h2 class="responsive-text mb-0 display-6 fw-lighter">Employee List</h2>
+
+      <a
+        *ngIf="canEdit()"
+        routerLink="/add"
+        class="btn btn-success border border-white"
+      >
+        <i class="bi bi-plus-circle me-2"></i> Add Employee
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+
+  <div *ngIf="isLoading" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading" class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th class="text-nowrap">ID</th>
+          <th class="text-nowrap">Name</th>
+          <th class="text-nowrap">Role</th>
+          <th class="text-nowrap">Salary (₹)</th>
+          <th class="text-nowrap">Department</th>
+          <th class="text-nowrap">Date Of Joining</th>
+          <th *ngIf="canEdit()" class="text-nowrap">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees">
+          <td class="text-nowrap">{{ emp.id }}</td>
+          <td class="text-nowrap" appHighlight [salary]="emp.salary">
+            {{ emp.name }}
+          </td>
+          <td class="text-nowrap">{{ emp.role }}</td>
+          <td class="text-nowrap">{{ emp.salary | salaryFormat }}</td>
+          <td class="text-nowrap">{{ emp.department }}</td>
+          <td class="text-nowrap">
+            {{ emp.dateOfJoining | date: "dd/MM/yyyy" }}
+          </td>
+          <td *ngIf="canEdit()" class="d-flex flex-wrap gap-2">
+            <a
+              *ngIf="canEdit()"
+              [routerLink]="['/edit', emp.id]"
+              class="btn btn-warning btn-sm border border-white"
+            >
+              Edit
+            </a>
+            <button
+              *ngIf="canEdit()"
+              class="btn btn-danger btn-sm border border-white"
+              (click)="onDeleteEmployee(emp.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
