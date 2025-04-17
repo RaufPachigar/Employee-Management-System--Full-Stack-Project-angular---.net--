@@ -17,6 +17,9 @@ export class AuthService {
 
   constructor(private readonly HttpCLient: HttpClient) {}
 
+  // AuthResponse is just jSON message a Which is Created In the Backend, When Status is 200 ,
+  // Backend get AuthResponse { Status : True , Message : Login/Signup success}
+  
   login(data: LoginRequest): Observable<AuthResponse> {
     return this.HttpCLient.post<AuthResponse>(
       `${this.API_URL}/Login`,
