@@ -4,5 +4,4 @@ export interface Employee {
   role: string;
   salary: number;
   department: string;
-  dateOfJoining: Date | null;
 }

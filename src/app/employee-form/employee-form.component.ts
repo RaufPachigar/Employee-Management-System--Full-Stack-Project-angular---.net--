@@ -18,7 +18,6 @@ export class EmployeeFormComponent {
     role: '',
     salary: 0,
     department: '',
-    dateOfJoining: new Date(),
   };
   @Output() submitEmployee = new EventEmitter<Employee>();
 
@@ -33,7 +32,7 @@ export class EmployeeFormComponent {
       !!this.employee.name &&
       !!this.employee.role &&
       !!this.employee.salary &&
-      !!this.employee.dateOfJoining
+      !!this.employee.department
     );
   }
 

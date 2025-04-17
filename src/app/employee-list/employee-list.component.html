@@ -39,7 +39,6 @@
           <th class="text-nowrap">Role</th>
           <th class="text-nowrap">Salary (₹)</th>
           <th class="text-nowrap">Department</th>
-          <th class="text-nowrap">Date Of Joining</th>
           <th *ngIf="canEdit()" class="text-nowrap">Actions</th>
         </tr>
       </thead>
@@ -52,9 +51,6 @@
           <td class="text-nowrap">{{ emp.role }}</td>
           <td class="text-nowrap">{{ emp.salary | salaryFormat }}</td>
           <td class="text-nowrap">{{ emp.department }}</td>
-          <td class="text-nowrap">
-            {{ emp.dateOfJoining | date: "dd/MM/yyyy" }}
-          </td>
           <td *ngIf="canEdit()" class="d-flex flex-wrap gap-2">
             <a
               *ngIf="canEdit()"

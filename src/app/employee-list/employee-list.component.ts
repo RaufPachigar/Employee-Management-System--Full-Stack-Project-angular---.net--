@@ -18,7 +18,6 @@ import { Router } from '@angular/router';
     SalaryPipe,
     HighlightDirective,
     NavbarComponent,
-    DatePipe,
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss',
@@ -46,12 +45,10 @@ export class EmployeeListComponent implements OnInit {
 
     this.employeeApiService.getEmployees().subscribe({
       next: (data) => {
+        console.log('Response:', data);
         this.employees = data.map((employee: any) => {
-          const date = new Date(employee.dateOfJoining);
           return {
             ...employee,
-            dateOfJoining:
-              employee.dateOfJoining || new Date().toISOString().split('T')[0],
           };
         });
         this.isLoading = false;

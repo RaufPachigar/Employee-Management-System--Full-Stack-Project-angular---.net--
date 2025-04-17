@@ -18,7 +18,6 @@ export class EmployeeAddComponent {
     role: '',
     salary: 0,
     department: '',
-    dateOfJoining: null,
   };
   isEdit = false;
 
@@ -32,9 +31,6 @@ export class EmployeeAddComponent {
     const empId = +this.route.snapshot.paramMap.get('id')!;
     if (empId) {
       this.employeeApiService.getEmployeeById(empId).subscribe((data) => {
-        if (typeof data.dateOfJoining === 'string') {
-          data.dateOfJoining = new Date(data.dateOfJoining);
-        }
         this.employee = data;
         this.isEdit = true;
       });
