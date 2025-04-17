@@ -12,18 +12,38 @@ export const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   {
     path: 'employees',
-    component: EmployeeListComponent,
+    loadComponent: () =>
+      import('./employee-list/employee-list.component').then(
+        (c) => c.EmployeeListComponent,
+      ),
+    // component: EmployeeListComponent,
     canActivate: [authGuard],
   },
-  { path: 'add', component: EmployeeAddComponent, canActivate: [authGuard] },
+  {
+    path: 'add',
+    loadComponent: () =>
+      import('./employee-add/employee-add.component').then(
+        (c) => c.EmployeeAddComponent,
+      ),
+    // component: EmployeeAddComponent,
+    canActivate: [authGuard],
+  },
   {
     path: 'edit/:id',
-    component: EmployeeAddComponent,
+    loadComponent: () =>
+      import('./employee-add/employee-add.component').then(
+        (c) => c.EmployeeAddComponent,
+      ),
+    // component: EmployeeAddComponent,
     canActivate: [authGuard],
   },
   {
     path: 'registered-users',
-    component: RegisteredUserComponent,
+    loadComponent: () =>
+      import('./registered-user/registered-user.component').then(
+        (c) => c.RegisteredUserComponent,
+      ),
+    // component: RegisteredUserComponent,
     canActivate: [authGuard],
   },
 ];
